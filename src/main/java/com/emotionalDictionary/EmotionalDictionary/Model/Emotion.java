@@ -2,12 +2,12 @@
  * Copyright (C) Schweizerische Bundesbahnen SBB, 2020.
  */
 
-package com.emotionalDictionary.EmotionalDictionary.model;
+package com.emotionalDictionary.EmotionalDictionary.Model;
 
 import java.time.Instant;
 
 public class Emotion {
-    private String emotion;
+    private String emotionWord;
     private String description;
     private Instant instant;
     private Frequency frequency;
@@ -16,19 +16,26 @@ public class Emotion {
         VERY_RARELY, RARELY, SOMETIMES, OFTEN, VERY_OFTEN
     }
 
-    public Emotion(String emotion, String description, Instant instant, Frequency frequency) {
-        this.emotion = emotion;
+    // TODO: Why do I need this one?
+    public Emotion() {}
+
+    public Emotion(String emotionWord, String description, Instant instant, Frequency frequency) {
+        this.emotionWord = emotionWord;
         this.description = description;
         this.instant = instant;
         this.frequency = frequency;
     }
 
-    public String getEmotion() {
-        return emotion;
+    public Emotion(String emotionWord, String description, Frequency frequency) {
+        this(emotionWord, description, Instant.now(), frequency);
     }
 
-    public void setEmotion(String emotion) {
-        this.emotion = emotion;
+    public String getEmotionWord() {
+        return emotionWord;
+    }
+
+    public void setEmotionWord(String emotionWord) {
+        this.emotionWord = emotionWord;
     }
 
     public String getDescription() {

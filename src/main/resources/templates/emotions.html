@@ -9,9 +9,19 @@
 </head>
 <body>
 
+<form th:object="${emotion}" action="#" th:action="@{/emotions}" method="post">
+  <label for="emotionWord">Enter emotion: </label>
+  <input th:field="*{emotionWord}" type="text" id="emotionWord" name="emotionWord">
+
+  <label for="description">Enter description:</label>
+  <input th:field="*{description}" type="text" id="description" name="description">
+
+  <input type="submit">
+</form>
+
 <div th:each="emotion : ${emotions}">
   <h1>
-    <span th:text="${emotion.getEmotion()}"></span>
+    <span th:text="${emotion.getEmotionWord()}"></span>
   </h1>
   <h3>
     <span th:text="${emotion.getDescription()}"></span>
