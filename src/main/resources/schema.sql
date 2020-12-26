@@ -7,8 +7,10 @@ CREATE TABLE IF NOT EXISTS USERS (
   lastname VARCHAR(20)
 );
 
-CREATE TABLE IF NOT EXISTS MESSAGES (
-  messageid INT PRIMARY KEY auto_increment,
-  username VARCHAR NOT NULL,
-  messagetext VARCHAR NOT NULL
+CREATE TABLE IF NOT EXISTS EMOTIONS (
+  emotionid INT PRIMARY KEY auto_increment,
+  emotionword VARCHAR NOT NULL,
+  description VARCHAR NOT NULL,
+  localDateTime DATETIME,
+  frequency ENUM('VERY_RARELY', 'RARELY', 'SOMETIMES', 'OFTEN', 'VERY_OFTEN')
 );

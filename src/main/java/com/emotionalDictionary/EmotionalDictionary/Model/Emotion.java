@@ -1,15 +1,12 @@
-/*
- * Copyright (C) Schweizerische Bundesbahnen SBB, 2020.
- */
-
 package com.emotionalDictionary.EmotionalDictionary.Model;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 public class Emotion {
+    private Integer emotionId;
     private String emotionWord;
     private String description;
-    private Instant instant;
+    private LocalDateTime localDateTime;
     private Frequency frequency;
 
     public enum Frequency {
@@ -19,15 +16,24 @@ public class Emotion {
     // TODO: Why do I need this one?
     public Emotion() {}
 
-    public Emotion(String emotionWord, String description, Instant instant, Frequency frequency) {
+    public Emotion(Integer emotionId, String emotionWord, String description, LocalDateTime instant, Frequency frequency) {
+        this.emotionId = emotionId;
         this.emotionWord = emotionWord;
         this.description = description;
-        this.instant = instant;
+        this.localDateTime = instant;
         this.frequency = frequency;
     }
 
-    public Emotion(String emotionWord, String description, Frequency frequency) {
-        this(emotionWord, description, Instant.now(), frequency);
+    public Emotion(Integer emotionId, String emotionWord, String description, Frequency frequency) {
+        this(emotionId, emotionWord, description, LocalDateTime.now(), frequency);
+    }
+
+    public Integer getEmotionId() {
+        return emotionId;
+    }
+
+    public void setEmotionId(Integer emotionId) {
+        this.emotionId = emotionId;
     }
 
     public String getEmotionWord() {
@@ -46,12 +52,12 @@ public class Emotion {
         this.description = description;
     }
 
-    public Instant getInstant() {
-        return instant;
+    public LocalDateTime getLocalDateTime() {
+        return localDateTime;
     }
 
-    public void setInstant(Instant instant) {
-        this.instant = instant;
+    public void setLocalDateTime(LocalDateTime localDateTime) {
+        this.localDateTime = localDateTime;
     }
 
     public Frequency getFrequency() {

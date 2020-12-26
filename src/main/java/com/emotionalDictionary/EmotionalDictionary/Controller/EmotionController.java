@@ -1,7 +1,3 @@
-/*
- * Copyright (C) Schweizerische Bundesbahnen SBB, 2020.
- */
-
 package com.emotionalDictionary.EmotionalDictionary.Controller;
 
 import com.emotionalDictionary.EmotionalDictionary.Model.Emotion;
@@ -28,7 +24,7 @@ public class EmotionController {
 
     @PostMapping("/emotions")
     public String addEmotion(Emotion emotion, Model model) {
-        Emotion newEmotion = new Emotion(emotion.getEmotionWord(), emotion.getDescription(),
+        Emotion newEmotion = new Emotion(null, emotion.getEmotionWord(), emotion.getDescription(),
                 Emotion.Frequency.SOMETIMES);
 
         emotionService.addToEmotionList(newEmotion);

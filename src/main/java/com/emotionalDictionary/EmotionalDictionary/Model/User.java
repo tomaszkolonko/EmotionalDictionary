@@ -1,7 +1,3 @@
-/*
- * Copyright (C) Schweizerische Bundesbahnen SBB, 2020.
- */
-
 package com.emotionalDictionary.EmotionalDictionary.Model;
 
 public class User {

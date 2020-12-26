@@ -1,7 +1,3 @@
-/*
- * Copyright (C) Schweizerische Bundesbahnen SBB, 2020.
- */
-
 package com.emotionalDictionary.EmotionalDictionary.Config;
 
 import com.emotionalDictionary.EmotionalDictionary.Service.AuthenticationService;
@@ -28,8 +24,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.headers().frameOptions().disable().and().csrf().disable();
+
         httpSecurity.authorizeRequests()
-                .antMatchers("/signup", "/css/**", "/js/**").permitAll()
+                .antMatchers("/signup", "/css/**", "/js/**", "/h2-console/**").permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.formLogin()
