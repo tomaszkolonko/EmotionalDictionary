@@ -15,11 +15,11 @@ public class EmotionService {
         this.emotionMapper = emotionMapper;
     }
 
-    public List<Emotion> getListOfEmotions() {
-        return emotionMapper.getAllEmotions();
-    }
-
     public void addToEmotionList(Emotion emotion) {
         emotionMapper.insert(emotion);
+    }
+
+    public List<Emotion> getListOfEmotions() {
+        return emotionMapper.getAllEmotions();
     }
 }

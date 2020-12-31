@@ -1,5 +1,6 @@
 package com.emotionalDictionary.EmotionalDictionary;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,22 +20,26 @@ public class LoginPage {
     @FindBy(id = "signup-link")
     private WebElement signupLink;
 
+    private final WebDriver webDriver;
+
     public LoginPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
         PageFactory.initElements(webDriver,  this);
     }
 
-    public void submit() {
-        submitButton.click();
+    public void enterCredentials(String username, String password) {
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", inputUsername);
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].value='" + username + "';",inputUsername);
+
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", inputPassword);
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].value='" + password + "';",inputPassword);
     }
 
-    public void enterCredentials(String username, String password) {
-        inputUsername.clear();
-        inputPassword.clear();
-        inputUsername.sendKeys(username);
-        inputPassword.sendKeys(password);
+    public void submit() {
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", submitButton);
     }
 
     public void goToSignupLink() {
-        signupLink.click();
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", signupLink);
     }
 }

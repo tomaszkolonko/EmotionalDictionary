@@ -9,14 +9,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 
-import java.util.concurrent.TimeUnit;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserLoginTests {
@@ -57,8 +55,10 @@ public class UserLoginTests {
     public void testLogin() {
         loginPage.enterCredentials(username, password);
         loginPage.submit();
-        // Wait for page load times
-        WebElement marker = webDriverWait.until(webDriverTemp -> webDriverTemp.findElement(By.id("emotionWord")));
+
+        WebElement emotionWord = webDriverWait.until(webDriver1 -> webDriver1.findElement(By.id("emotionWord")));
+        assertNotNull(emotionWord);
+
     }
 
     @Test
@@ -75,16 +75,15 @@ public class UserLoginTests {
         loginPage.goToSignupLink();
         signupPage.backToLogin();
         WebElement inputUserName = webDriverWait.until(webDriver1 -> webDriver1.findElement(By.id("inputUsername")));
+        assertNotNull(inputUserName);
     }
 
     @Test
     public void testSignupNewUserAndLogin() {
         loginPage.goToSignupLink();
-        WebElement passwordEntered = webDriverWait.until(webDriver1 -> webDriver1.findElement(By.id("inputPassword")));
         signupPage.enterCredentials("Peter", "Wolfgang", "Peter", "pet123");
-        webDriverWait.until(ExpectedConditions.textToBePresentInElement(passwordEntered, "pet123"));
         signupPage.submit();
-        webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
         WebElement successMessage = webDriverWait.until(webDriver1 -> webDriver1.findElement(By.id("success-msg")));
         assertEquals(successMessage.getText(), "You successfully signed up! Please continue to the login page.");
         signupPage.backToLogin();
@@ -92,7 +91,9 @@ public class UserLoginTests {
         WebElement inputUserName = webDriverWait.until(webDriver1 -> webDriver1.findElement(By.id("inputUsername")));
         loginPage.enterCredentials("Peter", "pet123");
         loginPage.submit();
-        // Wait for page load times
-        WebElement marker = webDriverWait.until(webDriverTemp -> webDriverTemp.findElement(By.id("emotionWord")));
+
+        WebElement emotionWord = webDriverWait.until(webDriver1 -> webDriver1.findElement(By.id("emotionWord")));
+        assertNotNull(emotionWord);
+
     }
 }

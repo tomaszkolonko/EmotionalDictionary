@@ -1,5 +1,6 @@
 package com.emotionalDictionary.EmotionalDictionary;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,22 +26,33 @@ public class SignupPage {
     @FindBy(css = "body > div > div > label > a")
     private WebElement backToLoginPage;
 
+    private final WebDriver webDriver;
+
     public SignupPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
         PageFactory.initElements(webDriver,  this);
     }
 
     public void enterCredentials(String firstName, String lastName, String username, String password) {
-        inputFirstName.sendKeys(firstName);
-        inputLastName.sendKeys(lastName);
-        inputUsername.sendKeys(username);
-        inputPassword.sendKeys(password);
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", inputFirstName);
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].value='" + firstName + "';", inputFirstName);
+
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", inputLastName);
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].value='" + lastName + "';", inputLastName);
+
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", inputUsername);
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].value='" + username + "';", inputUsername);
+
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", inputPassword);
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].value='" + password + "';", inputPassword);
     }
 
     public void submit() {
-        submitButton.click();
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", submitButton);
     }
 
     public void backToLogin() {
-        backToLoginPage.click();
+        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", backToLoginPage);
+
     }
 }
